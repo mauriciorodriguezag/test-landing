@@ -18,10 +18,20 @@ class User extends Model
     protected $fillable = [
         'name',
         'lastname',
-        'document_id',
+        'document',
         'city',
         'phone',
         'mail',
         'authorization'
+    ];
+
+    protected static $rules = [
+        'name' => 'required',//|unique:posts|max:255',
+        'lastname' => 'required',
+        'document' => 'required',
+        'city' => 'required',
+        'phone' => 'required',
+        'mail' => 'required|email',
+        'authorization' => 'required',
     ];
 }

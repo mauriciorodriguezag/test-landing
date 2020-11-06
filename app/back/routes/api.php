@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ctrls = route controllers
+$ctrls = "App\Http\Controllers";
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::get('/', function() {
-    echo "OK". database_path('database.sqlite');
+    return response()->json([
+        "code" => 200,
+        "message" => "OK",
+        "feedback" => "Status service OK"
+    ]);
 });
+
+Route::post('users/', "$ctrls\UserController@store");

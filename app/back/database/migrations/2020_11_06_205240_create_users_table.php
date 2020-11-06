@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
-            $table->string('document_id');
+            $table->float('document');
             $table->string('city');
-            $table->string('phone', 10);
+            $table->float('phone', 10);
             $table->string('mail');
             $table->boolean('authorization');
             $table->timestamps();
