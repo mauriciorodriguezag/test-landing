@@ -46,6 +46,8 @@ class UserController extends Controller
         if (User::count() >= 5 && !$winnerValidate) {
             $userSelected = User::inRandomOrder()->limit(1)->update(['winner'=>true]);
         }
+        // Si hay ganador trae la información para evitar dos consultas cada vez y traer el ganador lo antes posible, 
+        // solo se ejecuta la consulta si se seleccionó el usuario al azar
         $winner = $userSelected ? User::where('winner', '=', 1)->first() : $winnerValidate;
         return response()->json([
             "response" => $res,
