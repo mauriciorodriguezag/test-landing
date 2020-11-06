@@ -26,11 +26,11 @@ class User extends Model
     ];
 
     protected static $rules = [
-        'name' => 'required',//|unique:posts|max:255',
-        'lastname' => 'required',
-        'document' => 'required',
-        'city' => 'required',
-        'phone' => 'required',
+        'name' => 'required|string',
+        'lastname' => 'required|string',
+        'document' => 'required|float',
+        'city' => 'required|string',
+        'phone' => 'required|float',
         'mail' => 'required|email',
         'authorization' => 'required',
     ];

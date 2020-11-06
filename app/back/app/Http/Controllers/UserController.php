@@ -36,12 +36,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $userSelected = null;
+        $winnerValidate = User::where('winner', '=', 1)->first();
         try {
             $res = User::create($request->all());
         } catch (Exception $e) {
             $res = $e;
         }
-        return response()->json($res);
+        if (User::count() >= 5 && !$winnerValidate) {
+            $userSelected = User::inRandomOrder()->limit(1)->update(['winner'=>true]);
+        }
+        $winner = $userSelected ? User::where('winner', '=', 1)->first() : $winnerValidate;
+        return response()->json([
+            "response" => $res,
+            "winner" => $winner
+        ]);
     }
 
     /**

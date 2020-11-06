@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->float('phone', 10);
             $table->string('mail');
             $table->boolean('authorization');
+            $table->boolean('winner')->default(0);
             $table->timestamps();
         });
     }
