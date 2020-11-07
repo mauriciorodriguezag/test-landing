@@ -11,6 +11,9 @@
 /*                              Bootstrap modify                              */
 /* -------------------------------------------------------------------------- */
 
+.bg-primary{
+    background-color: $test-yellow !important;
+}
 .btn-primary{
     background-color: $test-yellow !important;
     border-color: $test-yellow;

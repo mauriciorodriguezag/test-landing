@@ -169,6 +169,9 @@ class UserController extends Controller
      */
     public function clear()
     {
-        User::truncate();
+        $result = User::truncate();
+        return response()->json([
+            "response"=> $result
+        ]);
     }
 }
