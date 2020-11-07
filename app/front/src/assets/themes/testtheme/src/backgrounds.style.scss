@@ -6,3 +6,22 @@
     background-image: url('../../../img/comp-primary.jpg');
     background-size: cover;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              Bootstrap modify                              */
+/* -------------------------------------------------------------------------- */
+
+.btn-primary{
+    background-color: $test-yellow !important;
+    border-color: $test-yellow;
+    box-shadow: $test-yellow 2px 2px 5px !important;
+    outline: 2px solid $test-yellow;
+}
+.btn-primary:hover{
+    opacity: 0.9;
+}
+
+input[type='checkbox']{
+    color: $test-yellow;
+    background-color: $test-yellow;
+  }

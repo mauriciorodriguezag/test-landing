@@ -3,6 +3,10 @@
 /* -------------------------------------------------------------------------- */
 
 .test-content-header{
-    height: 12vw;
-    max-height: 75px;
+    height: max-content;
+}
+
+.test-content-primary{
+    height: max-content !important;
+    min-height: 70%;
 }
