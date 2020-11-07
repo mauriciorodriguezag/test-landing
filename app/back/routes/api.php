@@ -30,3 +30,4 @@ Route::get('/', function() {
 });
 
 Route::post('users/', "$ctrls\UserController@store");
+Route::get('users/', "$ctrls\UserController@showExcel");

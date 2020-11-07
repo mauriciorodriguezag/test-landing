@@ -4,7 +4,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-landing-prom',
   templateUrl: './landing-prom.component.html',
-  styleUrls: ['./landing-prom.component.scss']
+  styleUrls: ['./landing-prom.component.scss'],
+  providers:[
+    RegisterPromService
+  ]
 })
 export class LandingPromComponent implements OnInit {
 
@@ -15,21 +18,43 @@ export class LandingPromComponent implements OnInit {
     submitProm.addEventListener(`click`, ()=>{
       this.registerUserProm()
     })
+    let downloadExcel = document.getElementById(`test-download-excel`)
+    downloadExcel.addEventListener(`click`, ()=>{
+      console.log('download');      
+      this.downloadRegist()
+    })
   }
-
+  
   registerUserProm(){
-    let name = document.getElementById(`test-name`)
-    let lastname = document.getElementById(`test-lastname`)
-    let document_id = document.getElementById(`test-document`)
-    let city = document.getElementById(`test-city`)
-    let phone = document.getElementById(`test-phone`)
-    let mail = document.getElementById(`test-mail`)
-    let auth = document.getElementById(`test-auth`)
-    this.registerPromService.postRegist()
+    let name = (<HTMLInputElement>document.getElementById(`test-name`)).value
+    let lastname = (<HTMLInputElement>document.getElementById(`test-lastname`)).value
+    let document_id = (<HTMLInputElement>document.getElementById(`test-document`)).value
+    let city = (<HTMLInputElement>document.getElementById(`test-city`)).value
+    let phone = (<HTMLInputElement>document.getElementById(`test-phone`)).value
+    let mail = (<HTMLInputElement>document.getElementById(`test-mail`)).value
+    let authorization = (<HTMLInputElement>document.getElementById(`test-auth`)).checked == true ? 'true' : 'false'
+    if (name && lastname && document_id && city && phone && mail && authorization) {
+      let form = new FormData
+      form.append('name', name)
+      form.append('lastname', lastname)
+      form.append('document', document_id)
+      form.append('city', city)
+      form.append('phone', phone)
+      form.append('mail', mail)
+      form.append('authorization', authorization)
+      this.registerPromService.postRegist(form)
       .subscribe(res=>{
         console.log(res);        
-      });
+      });      
+    }
 
+  }
+
+  downloadRegist(){
+    this.registerPromService.getRegist()
+    .subscribe(res=>{
+      console.log(res);        
+    });
   }
 
 }

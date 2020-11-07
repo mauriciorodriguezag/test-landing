@@ -5,16 +5,18 @@ import { catchError, retry } from 'rxjs/operators';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class RegisterPromService {
-  usersUrl = 'localhost:80/api';
-  headers = new HttpHeaders();
+  headers = new HttpHeaders({ timeout: `50000` }); 
 
   constructor(private http: HttpClient) { }
 
-  postRegist() {
-    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.get(this.usersUrl,{headers: headers});
+  postRegist(body):Observable<any> {
+    return this.http.post<any>(`api/users`, body, {headers: this.headers});
+  }
+  getRegist():Observable<any> {
+    return this.http.get<any>(`api/users`, {headers: this.headers});
   }
 }

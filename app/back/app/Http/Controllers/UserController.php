@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Exports\UsersExport;
 use Exception;
 
 class UserController extends Controller
@@ -64,6 +65,17 @@ class UserController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showExcel()
+    {   
+        return base64_encode(Excel::download(new UsersExport, 'result.xlsx'));
     }
 
     /**
