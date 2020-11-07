@@ -10,7 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 
 export class RegisterPromService {
   headers = new HttpHeaders();
-  urlbase = `http://localhost:85/api/`
+  urlbase = `https://api.munakdigital.com/api/`
 
   constructor(private http: HttpClient) { }
 
