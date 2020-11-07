@@ -75,7 +75,7 @@ class UserController extends Controller
      */
     public function showExcel()
     {   
-        return base64_encode(Excel::download(new UsersExport, 'result.xlsx'));
+        return Excel::download(new UsersExport, 'result.xlsx');
     }
 
     /**

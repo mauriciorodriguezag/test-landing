@@ -53,7 +53,14 @@ export class LandingPromComponent implements OnInit {
   downloadRegist(){
     this.registerPromService.getRegist()
     .subscribe(res=>{
-      console.log(res);        
+      console.log(res);  
+      if (res) {
+        const url = window.URL.createObjectURL(res.body);
+        const anchor = document.createElement('a');
+        anchor.download = `filename.xlsx`;
+        anchor.href = url;
+        anchor.click();
+    }      
     });
   }
 

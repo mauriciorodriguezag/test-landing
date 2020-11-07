@@ -9,14 +9,19 @@ import { catchError, retry } from 'rxjs/operators';
 })
 
 export class RegisterPromService {
-  headers = new HttpHeaders({ timeout: `50000` }); 
+  headers = new HttpHeaders();
+  urlbase = `http://localhost:85/api/`
 
   constructor(private http: HttpClient) { }
 
   postRegist(body):Observable<any> {
-    return this.http.post<any>(`api/users`, body, {headers: this.headers});
+    return this.http.post<any>(`${this.urlbase}users`, body, {headers: this.headers});
   }
   getRegist():Observable<any> {
-    return this.http.get<any>(`api/users`, {headers: this.headers});
+    return this.http.get<any>(`${this.urlbase}users`, {
+      observe: 'response',
+      responseType: 'blob' as 'json',
+      headers: this.headers,
+    });
   }
 }
