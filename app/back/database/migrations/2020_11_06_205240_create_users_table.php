@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->float('document');
+            $table->string('department');
             $table->string('city');
             $table->float('phone', 10);
             $table->string('mail');

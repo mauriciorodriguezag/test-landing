@@ -19,6 +19,7 @@ class UsersExport implements FromCollection, WithHeadings
             'name',
             'lastname',
             'cédula',
+            'Departamento',
             'Ciudad',
             'Celular',
             'Correo',

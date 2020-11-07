@@ -12,6 +12,9 @@
                         Registrate para participar por un cambio de aceite totalmente gratis
                     </p>
                 </h2>
+                <p class="bg-light p-2 mx-4 text-right text-uppercase">
+                    Oferta valida solo para Colombia
+                </p>
             </div>
             <div class="col-sm-12 col-md-6">
                 <div class="form-group bg-light p-4">
@@ -23,15 +26,29 @@
                     <input type="text" class="form-control" id="test-lastname" aria-describedby="emailHelpId" placeholder="" required>
                     <label class="m-0" for="">Cédula</label>
                     <input type="number" class="form-control" id="test-document" aria-describedby="emailHelpId" placeholder="" required>
-                    <label class="m-0" for="">Ciudad</label>
-                    <input type="text" class="form-control" id="test-city" aria-describedby="emailHelpId" placeholder="" required>
+                    <div class="form-group m-0">
+                      <label class="m-0" for="">Departamento</label>
+                      <select class="form-control" id="test-dep">
+                          <option hidden value="0">Seleccione un departamento</option>
+                          <option *ngFor="let dep of arrdeps" value="{{dep}}">{{dep}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group m-0">
+                        <label class="m-0" for="">Ciudad</label>
+                        <select class="form-control m-0" id="test-city">
+                          <option hidden value="0">Seleccione una ciudad</option>
+                          <option *ngFor="let city of arrcities" value="{{city}}">{{city}}</option>
+
+                        </select>
+                    </div>
+                    
                     <label class="m-0" for="">Celular</label>
                     <input type="number" class="form-control" id="test-phone" aria-describedby="emailHelpId" placeholder="" required>
                     <label class="m-0" for="">Correo</label>
                     <input type="email" class="form-control" id="test-mail" aria-describedby="emailHelpId" placeholder="" required>
                     <div class="form-check my-4">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" id="test-auth" value="checkedValue" checked>
+                        <input type="checkbox" class="form-check-input" id="test-auth">
                         Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la política de protección de datos personales
                       </label>
                     </div>

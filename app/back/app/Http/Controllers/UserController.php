@@ -37,6 +37,46 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate Regular Expressions Request Data
+        if(preg_match('/[^A-Z|a-z|áéíóú]/',$request->all()['name'])){
+            return response()->json([
+                "error"=> 404,
+                "response"=>[
+                    "title"=> "Nombre incorrecto",
+                    "text" => "Por favor ingrese solo caracteres validos."
+                ]
+            ]);
+        }
+
+        if(preg_match('/[^A-Z|a-z|áéíóú]/',$request->all()['lastname'])){
+            return response()->json([
+                "error"=> 404,
+                "response"=>[
+                    "title"=> "Apellido incorrecto",
+                    "text" => "Por favor ingrese solo caracteres validos."
+                ]
+            ]);
+        }
+
+        if(preg_match('/[^0123456789]/',$request->all()['phone'])){
+            return response()->json([
+                "error"=> 404,
+                "response"=>[
+                    "title"=> "Número de celular incorrecto",
+                    "text" => "Por favor ingrese solo caracteres validos."
+                ]
+            ]);
+        }
+
+        if(!filter_var($request->all()['mail'], FILTER_VALIDATE_EMAIL)){
+            return response()->json([
+                "error"=> 404,
+                "response"=>[
+                    "title"=> "Correo incorrecto",
+                    "text" => "Por favor ingrese solo caracteres validos."
+                ]
+            ]);
+        }
         $userSelected = null;
         $winnerValidate = User::where('winner', '=', 1)->first();
         try {
@@ -47,12 +87,8 @@ class UserController extends Controller
         if (User::count() >= 5 && !$winnerValidate) {
             $userSelected = User::inRandomOrder()->limit(1)->update(['winner'=>true]);
         }
-        // Si hay ganador trae la información para evitar dos consultas cada vez y traer el ganador lo antes posible, 
-        // solo se ejecuta la consulta si se seleccionó el usuario al azar
-        $winner = $userSelected ? User::where('winner', '=', 1)->first() : $winnerValidate;
         return response()->json([
-            "response" => $res,
-            "winner" => $winner
+            "response" => $res
         ]);
     }
 
@@ -75,7 +111,21 @@ class UserController extends Controller
      */
     public function showExcel()
     {   
-        return Excel::download(new UsersExport, 'result.xlsx');
+        return Excel::download(new UsersExport, 'report.xlsx');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showWinn()
+    {   
+        $winner = User::where('winner', '=', 1)->first();
+        return response()->json([
+            "winner" => $winner ? $winner : 'no-winner'
+        ]);
     }
 
     /**
