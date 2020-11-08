@@ -21,7 +21,7 @@ Por Mauricio González
 - dentro de test-landing-inxait/app/back/database crear archivo database.sqlite
 - dentro de test-landing-inxait/app/back php artisan migrate
 - crear demonio en /etc/systemd/system/start-back.service aputando al archivo startBack.sh
-- ![Screenshot](screenshot.png)
+![Screenshot](screenshot.png)
 - systemctl start start-back.service
 
 # Servidor de Angular
@@ -30,5 +30,5 @@ Por Mauricio González
 - dentro de test-landing-inxait/app/front ejecutar ng add @nguniversal/express-engine
 - dentro de test-landing-inxait/app/front ejecutar npm run build:ssr
 - crear demonio en /etc/systemd/system/start-front.service aputando al archivo startFront.sh
-- ![Screenshot](screenshot_2.png)
+![Screenshot](screenshot_2.png)
 - ng s
