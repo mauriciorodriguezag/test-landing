@@ -35,7 +35,6 @@ export class LandingPromComponent implements OnInit {
     let submitProm = document.getElementById(`test-form-prom`)
     submitProm.addEventListener(`click`, () => {
       this.registerUserProm()
-      this.validateWinner()
     })
     // Download excel
     let downloadExcel = document.getElementById(`test-download-excel`)
@@ -106,7 +105,9 @@ export class LandingPromComponent implements OnInit {
               showConfirmButton: true,
               confirmButtonText: 'Continuar',
               confirmButtonColor: '#d4a84a'
-            });
+            }).then(()=>{
+              this.validateWinner()
+            })
           }
           
         },
@@ -197,6 +198,7 @@ export class LandingPromComponent implements OnInit {
             .then(() => {
               localStorage.setItem(`winneravissment`, `${res.winner.name} ${res.winner.lastname}`)
               imagewinn.classList.add(`d-none`)
+              this.validateWinner()
             })
           }
         });      
