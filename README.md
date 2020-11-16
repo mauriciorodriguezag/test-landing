@@ -1,6 +1,5 @@
 # Test landing inxait
 Por Mauricio González
-https://test.munakdigital.com
 
 # Para ejecutar la prueba localmente
 
