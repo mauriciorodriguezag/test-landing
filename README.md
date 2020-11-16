@@ -1,4 +1,4 @@
-# Test landing inxait
+# Test landing
 Por Mauricio González
 
 # Para ejecutar la prueba localmente
